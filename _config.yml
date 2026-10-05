@@ -1,0 +1,55 @@
+title: Copperwyre
+author: Bertug Yemen
+description: Blog posts, research, and experiments from Bertug Yemen.
+url: "https://blog.copperwyre.com"
+baseurl: ""
+lang: en
+timezone: Europe/Berlin
+
+theme: minima
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+show_excerpts: true
+minima:
+  date_format: "%-d %B %Y"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Bertug Yemen
+
+# Keep the previous site-builder export in Git, but out of the published blog.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - AUTHORING.txt
+  - vendor
+  - blog
+  - images
+  - 404-Not-Found-Template.html
+  - About_137030367.html
+  - Blog-Template.html
+  - Checkout-Template.html
+  - Contact_41638338.html
+  - Home_196888054.html
+  - Login-Template.html
+  - Page-Password-Template.html
+  - Post-Template.html
+  - Product-Details-Template.html
+  - Product-List-Template.html
+  - Shopping-Cart-Template.html
+  - blog.json
+  - files.json
+  - fonts.json
+  - images.json
+  - publish.json
+  - site.json

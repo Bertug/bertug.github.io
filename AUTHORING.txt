@@ -1,0 +1,81 @@
+COPPERWYRE
+
+This is a native GitHub Pages/Jekyll blog using the supported Minima theme.
+Jekyll supplies automatic post listings and RSS. Local home and post layouts
+extend Minima with cover artwork, image thumbnails, and original-source links.
+Local includes and assets/blog.css match the dark, red-accented style of
+Defender's Window. The blog uses a casual, personal introduction from Bertug.
+
+ADD A POST
+
+Create _posts/YYYY-MM-DD-short-title.md in GitHub's browser editor or locally.
+Use this front matter, then write normal Markdown:
+
+---
+title: "Your post title"
+date: YYYY-MM-DD HH:MM:SS +0200
+description: "A short summary for search engines and sharing."
+excerpt: "A short summary for the homepage."
+---
+
+Your opening paragraph.
+
+## A section heading
+
+Your text.
+
+Use the correct local UTC offset for the date: Berlin is +0200 in summer
+and +0100 in winter. Layout and author are inherited from _config.yml.
+File names control URLs, so avoid renaming a published post without a redirect.
+
+The two imported LinkedIn articles are HTML posts with front matter. Their
+published text, publication timestamps, emphasis, images, captions, and links
+are preserved. LinkedIn tracking parameters and interface elements are omitted.
+For imports, display_date preserves the date shown by the original publisher
+when its timezone differs from Berlin. Keep date as the exact publication
+timestamp; feeds and machine-readable metadata use that timestamp.
+Jekyll supports HTML and Markdown posts together; new posts can be Markdown.
+For an unpublished working copy, keep it in _drafts and preview with --drafts.
+
+ARTICLE IMAGES
+
+Store artwork under assets/articles, not on an external image host.
+Add optional front matter:
+  image:
+    path: /assets/articles/your-cover.png
+    width: 1280
+    height: 720
+    alt: "A brief description of the artwork."
+  cover_caption: "Original image credit or caption, if any."
+  source_url: "https://www.linkedin.com/pulse/your-original-article/"
+
+The image appears on the homepage, article page, and social sharing metadata.
+Inline images belong in the article body with captions and descriptive alt
+text. Preserve their natural aspect ratio; link to the image for full-size
+viewing. Do not rely on expiring LinkedIn media URLs in published content.
+
+LOCAL PREVIEW
+
+Install Ruby and Bundler, then:
+  bundle install
+  bundle exec jekyll serve --host 127.0.0.1 --port 4175
+
+Open http://localhost:4175/. Stop the preview with Ctrl+C.
+Production build:
+  bundle exec jekyll build
+
+PUBLISHING
+
+The intended destination is https://blog.copperwyre.com.
+The existing Pages repository is Bertug/bertug.github.io.
+After reviewing and approving all public content, merge the blog changes
+to main. Pages is configured to build from main, at the repository root.
+
+DNS record: CNAME, name blog, target bertug.github.io.
+The repository's CNAME contains blog.copperwyre.com.
+Enable Enforce HTTPS once GitHub has provisioned the certificate.
+Do not alter the defenderswindow DNS record or the defenders-window repo.
+
+The old site-builder export remains in Git. Its files are excluded from
+the Jekyll build rather than deleted.
+Do not commit raw honeypot logs, IP addresses, credentials, or private notes.

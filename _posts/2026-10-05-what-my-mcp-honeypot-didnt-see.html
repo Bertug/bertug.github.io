@@ -1,0 +1,41 @@
+---
+title: "What My MCP Honeypot Didn\u2019t See"
+date: 2026-10-05 10:15:16 +0000
+display_date: "2026-10-05"
+last_modified_at: 2026-10-05 10:15:46 +0000
+author: Bertug Berkay Yemen
+description: "Over a month ago, I deployed an MCP honeypot. A fake enterprise gateway with tools like read_file, execute_command, and get_credentials."
+excerpt: "Over a month ago, I deployed an MCP honeypot. A fake enterprise gateway with tools like read_file, execute_command, and get_credentials."
+source_url: "https://www.linkedin.com/pulse/what-my-mcp-honeypot-didnt-see-bertug-berkay-yemen-gacoe/"
+image:
+  path: /assets/articles/mcp-honeypot-cover.png
+  width: 1280
+  height: 720
+  alt: "Red-lit honeypot illustration with an insect in a glass jar, a laptop, and a world map."
+---
+<p>Over a month ago, I deployed an MCP honeypot. A fake enterprise gateway with tools like <em>read_file, execute_command,</em> and <em>get_credentials</em>. Tempting names but no access to real systems. I wanted to see whether scanners would actually speak MCP, rather than treat it as another HTTP service.</p>
+
+<pre class="protocol"><code>initialize &rarr; tools/list &rarr; tools/call</code></pre>
+
+<h2>What I was watching for</h2>
+<p>In its current configuration, the service advertises its MCP endpoint and simulated tool names through GET /. A visitor can send JSON-RPC requests to POST /mcp, with POST / accepting the same requests. There is a difference between checking whether an HTTP service exists and understanding what it offers.</p>
+
+<p>A request to / tells me someone found the service. An initialize request suggests protocol awareness. A tools/list request shows an attempt to discover capabilities. A tools/call request gives me something more interesting: which capability they selected and what arguments they supplied. That progression was what I wanted to observe.</p>
+
+<h2>What showed up instead</h2>
+<p>What showed up instead was generic scanning. That was expected, but I was hoping to see MCP-aware attacks. In the logs I reviewed, I counted 64 scanner-like events: 41 with Nmap user agents and 23 with browser-like user agents in recurring scan bursts. <em>This count excludes deployment checks and ambiguous or test-like scripted traffic.</em></p>
+
+<p>One recurring pattern stood out: pairs of requests targeting /, arriving at roughly the same time each evening. That is consistent with scheduled scanning, but it does not tell me who was behind it or whether the intent was malicious.</p>
+
+<p>No external requests to /mcp were recorded. No external MCP-aware sequence appeared.</p>
+
+<h2>My hypothesis: attack economics</h2>
+<p>My hypothesis is that this comes down to <strong>attack economics</strong>. Speaking MCP is not particularly difficult. You do not need an autonomous AI agent to initialize a connection and list tools. The interesting question is whether finding accessible MCP servers and turning their capabilities into something valuable offers a better return than familiar attack paths.</p>
+
+<p>My expectation is that the economics could change as deployments become more common and discovery and testing become easier to automate. The incentive would come from useful access, not simply from the protocol being new. This honeypot does not prove that explanation. Low traffic, limited visibility, or never encountering an MCP-focused scanner could explain the same result.</p>
+
+<p>If your existing scanning playbook still produces results, why change it?</p>
+
+<p>The question I&rsquo;m watching is not just whether attackers can speak MCP.</p>
+
+<p><strong>It is when doing so becomes worth their effort.</strong></p>
