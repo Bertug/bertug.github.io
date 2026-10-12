@@ -64,6 +64,14 @@ Open http://localhost:4175/. Stop the preview with Ctrl+C.
 Production build:
   bundle exec jekyll build
 
+ANALYTICS
+
+Cloudflare Web Analytics is installed in _layouts/default.html, which is shared
+by the homepage and article layouts. View reports for blog.copperwyre.com in
+Cloudflare's account-level Web Analytics dashboard.
+Keep automatic snippet injection disabled when using this manual installation
+to avoid loading the beacon twice.
+
 PUBLISHING
 
 The intended destination is https://blog.copperwyre.com.
