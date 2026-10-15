@@ -6,6 +6,15 @@ extend Minima with cover artwork, image thumbnails, and original-source links.
 Local includes and assets/blog.css match the dark, red-accented style of
 Defender's Window. The blog uses a casual, personal introduction from Bertug.
 
+THEME TOGGLE
+
+The header has a sun/moon button. The theme comes from, in order: the
+?scoutTheme=light|dark URL parameter, the visitor's saved choice, their OS
+setting, then dark. The choice is saved in a cw-theme cookie on
+.copperwyre.com, so it carries over to Defender's Window. Both palettes are
+CSS variables in _includes/head.html; the button script is in
+_includes/header.html. Use the variables, not fixed colors, in new styles.
+
 ADD A POST
 
 Create _posts/YYYY-MM-DD-short-title.md in GitHub's browser editor or locally.

@@ -48,12 +48,32 @@ a:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 5px; }
 nav {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1.5rem;
   font-family: Consolas, "Courier New", Courier, monospace;
   font-size: 12px;
 }
 nav a { color: var(--cp-text-muted); text-decoration: none; }
 nav a:hover { color: var(--cp-text); }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--cp-text-muted);
+  background: none;
+  border: 1px solid var(--cp-border-strong);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { color: var(--cp-text); border-color: var(--cp-text-muted); }
+.theme-toggle:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+.theme-toggle svg { width: 14px; height: 14px; }
+.theme-toggle .icon-moon, html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+html[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 .page-content { flex: 1; padding-block: 3.5rem; }
 h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
 h1 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 10px; }

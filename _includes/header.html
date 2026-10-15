@@ -5,6 +5,37 @@
     <nav aria-label="Main navigation">
       <a href="{{ '/' | relative_url }}">Blog</a>
       <a href="https://defenderswindow.copperwyre.com/">Defender's Window <span aria-hidden="true">&nearr;</span></a>
+      <button class="theme-toggle" type="button" hidden>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <script>
+        (() => {
+          const root = document.documentElement;
+          const button = document.querySelector(".theme-toggle");
+          const label = () => {
+            const text = root.dataset.theme === "light" ? "Switch to dark theme" : "Switch to light theme";
+            button.setAttribute("aria-label", text);
+            button.title = text;
+          };
+          label();
+          button.hidden = false;
+          button.addEventListener("click", () => {
+            const theme = root.dataset.theme === "light" ? "dark" : "light";
+            root.dataset.theme = theme;
+            label();
+            // Shared across blog.copperwyre.com and defenderswindow.copperwyre.com.
+            const domain = location.hostname.endsWith("copperwyre.com") ? ";domain=.copperwyre.com" : "";
+            const secure = location.protocol === "https:" ? ";secure" : "";
+            document.cookie = `cw-theme=${theme};path=/;max-age=31536000;samesite=lax${secure}${domain}`;
+          });
+          matchMedia("(prefers-color-scheme: light)").addEventListener("change", (event) => {
+            if (/(?:^|; )cw-theme=/.test(document.cookie)) return;
+            root.dataset.theme = event.matches ? "light" : "dark";
+            label();
+          });
+        })();
+      </script>
     </nav>
   </div>
 </header>

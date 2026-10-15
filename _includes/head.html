@@ -3,8 +3,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     (() => {
+      // Order: ?scoutTheme= override, saved choice (shared with Defender's Window), OS preference, dark.
       const param = new URLSearchParams(window.location.search).get("scoutTheme");
-      const theme = param === "light" ? "light" : "dark";
+      const saved = document.cookie.match(/(?:^|; )cw-theme=(light|dark)/);
+      const os = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      const theme = param === "light" || param === "dark" ? param : saved ? saved[1] : os;
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
@@ -20,9 +23,9 @@
       --cp-text: #242424;
       --cp-text-muted: #5c5c5c;
       --cp-text-soft: #6f6f6f;
-      --cp-accent: #b11f4b;
-      --cp-accent-hover: #9a1a41;
-      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent: #c8261c;
+      --cp-accent-hover: #a81f16;
+      --cp-accent-soft: rgba(200, 38, 28, 0.08);
       --cp-accent-fg: #ffffff;
       --cp-success: #16a34a;
       --cp-danger: #dc2626;
@@ -33,7 +36,7 @@
       --cp-panel: rgba(255, 255, 255, 0.86);
       --cp-panel-strong: rgba(255, 255, 255, 0.96);
       --cp-sheen: rgba(255, 255, 255, 0.55);
-      --cp-highlight: rgba(177, 31, 75, 0.12);
+      --cp-highlight: rgba(200, 38, 28, 0.12);
     }
     :root:not([data-theme]), html[data-theme="dark"] {
       color-scheme: dark;
