@@ -147,7 +147,7 @@ td, th { padding: 0.5rem 0.75rem; border: 1px solid var(--cp-border); text-align
 .site-footer { color: var(--cp-text-muted); font-family: Consolas, "Courier New", Courier, monospace; font-size: 12px; }
 .footer-inner { padding-block: 1.25rem 0; border-top: 1px solid var(--cp-border); }
 .site-footer p { margin: 0; }
-.footer-quote { padding-bottom: 2rem; font-size: 11px; text-align: center; }
+.footer-quote { padding-block: 0.5rem 2rem; font-size: 11px; text-align: right; }
 .skip-link {
   position: absolute;
   top: -6rem;
