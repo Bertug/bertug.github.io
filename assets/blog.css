@@ -145,7 +145,7 @@ img { max-width: 100%; height: auto; }
 table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
 td, th { padding: 0.5rem 0.75rem; border: 1px solid var(--cp-border); text-align: left; }
 .site-footer { color: var(--cp-text-muted); font-family: Consolas, "Courier New", Courier, monospace; font-size: 12px; }
-.footer-inner { padding-block: 1.25rem 2.5rem; border-top: 1px solid var(--cp-border); }
+.footer-inner { padding-block: 1.25rem 0; border-top: 1px solid var(--cp-border); }
 .site-footer p { margin: 0; }
 .footer-quote { padding-bottom: 2rem; font-size: 11px; text-align: center; }
 .skip-link {
